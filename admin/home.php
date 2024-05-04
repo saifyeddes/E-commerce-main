@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Admin Starter Template : Tailwind Toolbox</title>
+    <title>Dashboard Admin</title>
     <meta name="description" content="Tailwind CSS Starter template - Admin theme, dashboard, or web application UI!">
     <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,fixed header, admin starter template, admin template, admin console, example">
 
@@ -922,36 +922,131 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
             <div class="flex flex-wrap">
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
+                    <?php
+                    // Database connection details
+                    $host = "localhost";
+                    $user = "root";
+                    $pass = "";
+                    $db = "cse411project";
+
+                    // Establish the database connection
+                    $connection = mysqli_connect($host, $user, $pass, $db);
+
+                    // Check connection
+                    if (!$connection) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+
+                    // Query to calculate total amount of products in the cart
+                    $sql = "SELECT SUM(quantity * price) AS total_amount FROM cart";
+                    $result = mysqli_query($connection, $sql);
+
+                    if ($result) {
+                        // Fetch the result
+                        $row = mysqli_fetch_assoc($result);
+                        $totalAmount = $row['total_amount'];
+                    } else {
+                        $totalAmount = 0;
+                    }
+
+                    // Close the connection
+                    mysqli_close($connection);
+                    ?>
+
                     <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="rounded-full p-5 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Total Revenue</h5>
-                                <h3 class="font-bold text-3xl">$3249 <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
+                                <h5 class="font-bold uppercase text-gray-600">Total Amount</h5>
+                                <h3 class="font-bold text-3xl">$<?php echo $totalAmount; ?> <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
+
                     <!--/Metric Card-->
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Total Users</h5>
-                                <h3 class="font-bold text-3xl">249 <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></h3>
-                            </div>
-                        </div>
-                    </div>
+                   <?php
+                   // Database connection details
+                   $host = "localhost";
+                   $user = "root";
+                   $pass = "";
+                   $db = "cse411project";
+
+                   // Establish the database connection
+                   $connection = mysqli_connect($host, $user, $pass, $db);
+
+                   // Check connection
+                   if (!$connection) {
+                       die("Connection failed: " . mysqli_connect_error());
+                   }
+
+                   // Query to count total number of administrators
+                   $sql = "SELECT COUNT(*) AS total_admin FROM admin";
+                   $result = mysqli_query($connection, $sql);
+
+                   if ($result) {
+                       // Fetch the result
+                       $row = mysqli_fetch_assoc($result);
+                       $totalAdmin = $row['total_admin'];
+                   } else {
+                       $totalAdmin = 0;
+                   }
+
+                   // Close the connection
+                   mysqli_close($connection);
+                   ?>
+
+                   <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+                       <div class="flex flex-row items-center">
+                           <div class="flex-shrink pr-4">
+                               <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                           </div>
+                           <div class="flex-1 text-right md:text-center">
+                               <h5 class="font-bold uppercase text-gray-600">Total Admin</h5>
+                               <h3 class="font-bold text-3xl"><?php echo $totalAdmin; ?> <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                           </div>
+                       </div>
+                   </div>
+
                     <!--/Metric Card-->
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
+                    <?php
+                    // Database connection details
+                    $host = "localhost";
+                    $user = "root";
+                    $pass = "";
+                    $db = "cse411project";
+
+                    // Establish the database connection
+                    $connection = mysqli_connect($host, $user, $pass, $db);
+
+                    // Check connection
+                    if (!$connection) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+
+                    // Query to count total number of users
+                    $sql = "SELECT COUNT(*) AS total_users FROM users";
+                    $result = mysqli_query($connection, $sql);
+
+                    if ($result) {
+                        // Fetch the result
+                        $row = mysqli_fetch_assoc($result);
+                        $totalUsers = $row['total_users'];
+                    } else {
+                        $totalUsers = 0;
+                    }
+
+                    // Close the connection
+                    mysqli_close($connection);
+                    ?>
+
                     <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
@@ -959,40 +1054,105 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-600">New Users</h5>
-                                <h3 class="font-bold text-3xl">2 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                                <h3 class="font-bold text-3xl"><?php echo $totalUsers; ?> <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
+
                     <!--/Metric Card-->
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
-                    <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
-                        <div class="flex flex-row items-center">
-                            <div class="flex-shrink pr-4">
-                                <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
-                            </div>
-                            <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Server Uptime</h5>
-                                <h3 class="font-bold text-3xl">152 days</h3>
-                            </div>
-                        </div>
-                    </div>
+                   <?php
+                   // Connect to your database
+                  $host = "localhost";
+                  $user = "root";
+                  $pass = "";
+                  $db   ="cse411project";
+
+                   // Create connection
+                   $conn = new mysqli($host, $user, $pass, $db);
+
+                   // Check connection
+                   if ($conn->connect_error) {
+                       die("Connection failed: " . $conn->connect_error);
+                   }
+
+                   // Query to count total number of products
+                   $sql = "SELECT COUNT(*) AS total_products FROM product";
+                   $result = $conn->query($sql);
+
+                   if ($result->num_rows > 0) {
+                       // Fetch the result
+                       $row = $result->fetch_assoc();
+                       $totalProducts = $row['total_products'];
+                   } else {
+                       $totalProducts = 0;
+                   }
+
+                   // Close the connection
+                   $conn->close();
+                   ?>
+
+                   <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+                       <div class="flex flex-row items-center">
+                           <div class="flex-shrink pr-4">
+                               <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                           </div>
+                           <div class="flex-1 text-right md:text-center">
+                               <h5 class="font-bold uppercase text-gray-600">Total Products</h5>
+                               <h3 class="font-bold text-3xl"><?php echo $totalProducts; ?> Products</h3>
+                           </div>
+                       </div>
+                   </div>
+
                     <!--/Metric Card-->
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                     <!--Metric Card-->
+                    <?php
+                    // Database connection details
+                    $host = "localhost";
+                    $user = "root";
+                    $pass = "";
+                    $db = "cse411project";
+
+                    // Establish the database connection
+                    $connection = mysqli_connect($host, $user, $pass, $db);
+
+                    // Check connection
+                    if (!$connection) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+
+                    // Query to count total number of orders
+                    $sql = "SELECT COUNT(*) AS total_orders FROM orders";
+                    $result = mysqli_query($connection, $sql);
+
+                    if ($result) {
+                        // Fetch the result
+                        $row = mysqli_fetch_assoc($result);
+                        $totalOrders = $row['total_orders'];
+                    } else {
+                        $totalOrders = 0;
+                    }
+
+                    // Close the connection
+                    mysqli_close($connection);
+                    ?>
+
                     <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">To Do List</h5>
-                                <h3 class="font-bold text-3xl">7 tasks</h3>
+                                <h5 class="font-bold uppercase text-gray-600">Orders</h5>
+                                <h3 class="font-bold text-3xl"><?php echo $totalOrders; ?> Orders</h3>
                             </div>
                         </div>
                     </div>
+
                     <!--/Metric Card-->
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-6">
@@ -1003,7 +1163,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
                                 <div class="rounded-full p-5 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-600">Issues</h5>
+                                <h5 class="font-bold uppercase text-gray-600">Delivery Orders</h5>
                                 <h3 class="font-bold text-3xl">3 <span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
